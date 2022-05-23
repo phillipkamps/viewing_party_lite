@@ -3,13 +3,16 @@ Rails.application.routes.draw do
   root "landing_page#main"
 
   get "/register", to: "users#new"
+  get "/register", to: "users#register"
   post "/register", to: "users#create"
 
   get "/users/:id", to: "users#show"
   get "/users/:id/discover", to: "users#discover"
   get "/users/:id/users/:id/movies", to: "users#movies"
   get "/users/:id/movies", to: "users#movies"
-  get "/register", to: "users#register"
+
+  get "/login", to: "users#login_form"
+  post "/login", to: "users#login_user"
 
   get "/users/:user_id/movies/:movie_id", to: "movies#show"
   get "/users/:user_id/movies/:movie_id/viewing-party/new", to: "movies#new"
