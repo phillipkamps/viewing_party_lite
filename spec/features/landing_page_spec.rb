@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Landing page" do
-  let!(:pabu) { User.create!(name: "Pabu", email: "pabu@email.com") }
-  let!(:loki) { User.create!(name: "Loki", email: "loki@email.com") }
-  let!(:thor) { User.create!(name: "Thor", email: "thor@email.com") }
-  let!(:ian) { User.create!(name: "Ian", email: "ian@email.com") }
-  let!(:phillip) { User.create!(name: "Phillip", email: "phillip@email.com") }
+  let!(:pabu) { User.create!(name: "Pabu", email: "pabu@email.com", password: "qwerty", password_confirmation: "qwerty") }
+  let!(:loki) { User.create!(name: "Loki", email: "loki@email.com", password: "qwerty", password_confirmation: "qwerty") }
+  let!(:thor) { User.create!(name: "Thor", email: "thor@email.com", password: "qwerty", password_confirmation: "qwerty") }
+  let!(:ian) { User.create!(name: "Ian", email: "ian@email.com", password: "qwerty", password_confirmation: "qwerty") }
+  let!(:phillip) { User.create!(name: "Phillip", email: "phillip@email.com", password: "qwerty", password_confirmation: "qwerty") }
 
   before :each do
     visit "/"

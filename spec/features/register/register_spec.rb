@@ -10,8 +10,7 @@ RSpec.describe "Register page" do
     fill_in :password_confirmation, with: "ilovesam"
 
     click_on "Register"
-
-    expect(User.count).to eq(1)
+    expect(User.last.name).to eq("Frodo Baggins")
     expect(current_path).to eq("/users/#{User.last.id}")
   end
 end

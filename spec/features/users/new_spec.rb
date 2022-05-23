@@ -7,6 +7,8 @@ RSpec.describe "creates new user" do
 
       fill_in "Name", with: "Pabu"
       fill_in "Email", with: "pabu@gmail.com"
+      fill_in "Password", with: "qwerty"
+      fill_in "Password confirmation", with: "qwerty"
 
       click_button "Register"
 
