@@ -1,17 +1,17 @@
 require "rails_helper"
 
 RSpec.describe "Register page" do
-  # let!(:pabu) { User.create!(name: "Pabu", email: "pabu@email.com") }
-
   it "has has appropriate form" do
     visit "/register"
-    expect(page).to have_field("Name")
-    expect(page).to have_field("Email")
-    expect(page).to have_field("Password")
-    expect(page).to have_field("Password confirmation")
-    # fill_in("Name") with("Frodo")
-    # fill_in("Email") with("frodo.baggins@midearth.net")
-    # fill_in("Password") with("ilovesam")
-    # fill_in("Password confirmation") with("ilovesam")
+
+    fill_in :name, with: "Frodo Baggins"
+    fill_in :email, with: "frodo@midearth.net"
+    fill_in :password, with: "ilovesam"
+    fill_in :password_confirmation, with: "ilovesam"
+
+    click_on "Register"
+
+    expect(User.count).to eq(1)
+    expect(current_path).to eq("/users/#{User.last.id}")
   end
 end
