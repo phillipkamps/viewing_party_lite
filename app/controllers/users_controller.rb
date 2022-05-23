@@ -3,8 +3,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create!(user_params)
-    redirect_to "/users/#{user.id}"
+    user = User.new(user_params)
+    if user.save
+      flash[:success] = "Welcome, #{user.name}!"
+      redirect_to "/users/#{user.id}"
+    else
+      flash[:fail] = user.errors.full_messages.to_sentence.to_s
+      redirect_to "/register"
+    end
   end
 
   def show
