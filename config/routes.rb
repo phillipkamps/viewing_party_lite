@@ -7,11 +7,14 @@ Rails.application.routes.draw do
   post "/register", to: "users#create"
 
   get "/dashboard", to: "users#show"
+
   get "/discover", to: "users#discover"
   get "/discover/movies", to: "users#movies"
 
   get "/login", to: "users#login_form"
   post "/login", to: "users#login_user"
+
+  get "/logout", to: "users#logout"
 
   get "/movies/:movie_id", to: "movies#show"
   get "/movies/:movie_id/viewing-party/new", to: "movies#new"

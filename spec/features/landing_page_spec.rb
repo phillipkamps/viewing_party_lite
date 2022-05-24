@@ -10,31 +10,35 @@ RSpec.describe "Landing page" do
   before :each do
     visit "/"
     click_on "Log In"
-    expect(current_path).to eq("/login")
     fill_in :email, with: "pabu@email.com"
     fill_in :password, with: "qwerty"
     click_on "Log In"
     visit "/"
   end
 
-  it "has title of application" do
+  it "has authenticated user page" do
     expect(page).to have_content("Viewing Party Lite")
-  end
 
-  it "has button to create new user" do
-    click_button("Create New User")
-    expect(current_path).to eq("/register")
-  end
-
-  it "has list of existing users emails" do
     expect(page).to have_content("loki@email.com")
     expect(page).to have_content("thor@email.com")
     expect(page).to have_content("ian@email.com")
     expect(page).to have_content("phillip@email.com")
-  end
 
-  it "has link to go back to landing page" do
+    expect(page).to_not have_button("Log In")
+    expect(page).to_not have_button("Create New User")
+
     click_link "Landing Page"
     expect(current_path).to eq("/")
+  end
+
+  it "has log out functionality" do
+    click_button("Log Out")
+    expect(current_path).to eq("/")
+    expect(page).to_not have_content("loki@email.com")
+    expect(page).to_not have_content("thor@email.com")
+    expect(page).to_not have_content("ian@email.com")
+    expect(page).to_not have_content("phillip@email.com")
+    expect(page).to have_button("Log In")
+    expect(page).to have_button("Create New User")
   end
 end
