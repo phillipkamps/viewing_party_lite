@@ -1,7 +1,7 @@
 <center>
-<%= button_to "Discover Top-Rated Movies", "users/#{@user.id}/movies?q=top%20rated", method: :get %>
+<%= button_to "Discover Top-Rated Movies", "discover/movies?q=top%20rated", method: :get %>
 <br>
-<%= form_with url: "/users/#{@user.id}/movies?q=keyword", method: :get, local: true do |f| %>
+<%= form_with url: "/discover/movies?q=keyword", method: :get, local: true do |f| %>
   <%= f.label "Title:" %>
   <%= f.text_field :title %>
   <%= f.submit "Search" %>

@@ -5,8 +5,9 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
+      session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.name}!"
-      redirect_to "/users/#{user.id}"
+      redirect_to "/dashboard"
     else
       flash[:fail] = user.errors.full_messages.to_sentence.to_s
       redirect_to "/register"
@@ -14,16 +15,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def discover
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @facade = MovieFacade.new
   end
 
   def movies
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @facade =
       if params[:title].nil?
         MovieFacade.new.top_movies
@@ -38,7 +39,8 @@ class UsersController < ApplicationController
   def login_user
     @user = User.find_by(email: params[:email])
     if @user.authenticate(params[:password])
-      redirect_to "/users/#{@user.id}"
+      session[:user_id] = @user.id
+      redirect_to "/dashboard"
     else
       flash[:invalid] = "Invalid email or password"
       redirect_to "/login"

@@ -9,6 +9,12 @@ RSpec.describe "Landing page" do
 
   before :each do
     visit "/"
+    click_on "Log In"
+    expect(current_path).to eq("/login")
+    fill_in :email, with: "pabu@email.com"
+    fill_in :password, with: "qwerty"
+    click_on "Log In"
+    visit "/"
   end
 
   it "has title of application" do
@@ -20,10 +26,11 @@ RSpec.describe "Landing page" do
     expect(current_path).to eq("/register")
   end
 
-  it "has list of existing users w/ links" do
-    within ".Pabu" do
-      click_link "Pabu"
-    end
+  it "has list of existing users emails" do
+    expect(page).to have_content("loki@email.com")
+    expect(page).to have_content("thor@email.com")
+    expect(page).to have_content("ian@email.com")
+    expect(page).to have_content("phillip@email.com")
   end
 
   it "has link to go back to landing page" do

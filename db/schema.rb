@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 2022_05_23_195447) do
     t.integer "start_time"
     t.integer "date"
     t.integer "length"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_parties_on_user_id"
   end
 
   create_table "user_parties", force: :cascade do |t|
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_05_23_195447) do
     t.string "password_digest"
   end
 
+  add_foreign_key "parties", "users"
   add_foreign_key "user_parties", "parties"
   add_foreign_key "user_parties", "users"
 end

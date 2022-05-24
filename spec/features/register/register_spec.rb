@@ -11,7 +11,7 @@ RSpec.describe "Register page" do
 
     click_on "Register"
     expect(User.last.name).to eq("Frodo Baggins")
-    expect(current_path).to eq("/users/#{User.last.id}")
+    expect(current_path).to eq("/dashboard")
     expect(page).to have_content("Welcome, Frodo Baggins!")
   end
 

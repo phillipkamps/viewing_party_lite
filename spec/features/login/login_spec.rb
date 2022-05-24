@@ -10,7 +10,7 @@ RSpec.describe "Login page" do
     fill_in :email, with: "pabu@email.com"
     fill_in :password, with: "qwerty"
     click_on "Log In"
-    expect(current_path).to eq("/users/#{pabu.id}")
+    expect(current_path).to eq("/dashboard")
   end
 
   it "can handle login sad path" do
